@@ -1,4 +1,4 @@
-package za.ac.cput.campusconnect.domain;
+package za.ac.cput.campusconnect.factory;
 
 /**
  * FileName.java
@@ -7,5 +7,5 @@ package za.ac.cput.campusconnect.domain;
  * Completion date:
  */
 
-public class Property {
+public class RoomFactory {
 }
