@@ -1,8 +1,18 @@
 package za.ac.cput.campusconnect.domain;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
+/**
+ * FileName.java
+ * Class:
+ * Author:Aphelele Zimkhita Joka 218130260
+ * Completion date:
+ */
+@Entity
 public class Property {
+    @Id
     private String propertyID;
     private String propertyOwner;
     private String propertyName;

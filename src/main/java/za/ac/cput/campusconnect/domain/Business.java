@@ -1,10 +1,20 @@
 package za.ac.cput.campusconnect.domain;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
+/**
+ * FileName.java
+ * Class:
+ * Author:Aphelele Zimkhita Joka 218130260
+ * Completion date:
+ */
+@Entity
 public class Business {
+    @Id
     private String businessID;
-    private String BusinessName;
+    private String businessName;
     private Contact contact;
     private String description;
 
@@ -13,7 +23,7 @@ public class Business {
     }
     private Business(Builder builder){
         this.businessID = builder.businessID;
-        this.BusinessName = builder.BusinessName;
+        this.businessName = builder.businessName;
         this.contact = builder.contact;
         this.description = builder.description;
 
@@ -24,7 +34,7 @@ public class Business {
     }
 
     public String getBusinessName() {
-        return BusinessName;
+        return businessName;
     }
 
     public Contact getContact() {
@@ -40,26 +50,26 @@ public class Business {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Business business = (Business) o;
-        return Objects.equals(businessID, business.businessID) && Objects.equals(BusinessName, business.BusinessName) && Objects.equals(contact, business.contact) && Objects.equals(description, business.description);
+        return Objects.equals(businessID, business.businessID) && Objects.equals(businessName, business.businessName) && Objects.equals(contact, business.contact) && Objects.equals(description, business.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(businessID, BusinessName, contact, description);
+        return Objects.hash(businessID, businessName, contact, description);
     }
 
     @Override
     public String toString() {
         return "Business{" +
                 "businessID='" + businessID + '\'' +
-                ", BusinessName='" + BusinessName + '\'' +
+                ", businessName='" + businessName + '\'' +
                 ", contact=" + contact +
                 ", description='" + description + '\'' +
                 '}';
     }
     public static class Builder{
         private String businessID;
-        private String BusinessName;
+        private String businessName;
         private Contact contact;
         private String description;
 
@@ -70,7 +80,7 @@ public class Business {
         }
 
         public Builder setBusinessName(String businessName) {
-            BusinessName = businessName;
+            businessName = businessName;
             return this;
         }
 
@@ -86,7 +96,7 @@ public class Business {
 
         public Builder copy(Business business){
             this.businessID = business.businessID;
-            this.BusinessName = business.BusinessName;
+            this.businessName = business.businessName;
             this.contact= business.contact;
             this.description = business.description;
             return this ;
