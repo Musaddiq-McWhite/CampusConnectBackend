@@ -1,11 +1,14 @@
-package za.ac.cput.campusconnect.repository;
+package za.ac.cput.repository;
 
-/**
- * FileName.java
- * Interface:
- * Author:
- * Completion date:
- */
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import za.ac.cput.domain.Student;
 
-public interface StudentRepository {
+import java.util.List;
+
+@Repository
+public interface StudentRepository extends JpaRepository<Student, String> {
+    Student findByStudentID(String studentID);
+    void deleteByStudentID(String studentID);
+    List<Student> findAllStudents();
 }
