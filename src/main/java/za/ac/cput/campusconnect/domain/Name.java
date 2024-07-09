@@ -1,4 +1,4 @@
-package za.ac.cput.domain;
+package za.ac.cput.campusconnect.domain;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
