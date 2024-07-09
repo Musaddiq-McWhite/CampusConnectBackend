@@ -121,7 +121,6 @@ public class Property {
         }
         public Property build() {
             return new Property(this);
-        }
-    }
+        }}
 
 }

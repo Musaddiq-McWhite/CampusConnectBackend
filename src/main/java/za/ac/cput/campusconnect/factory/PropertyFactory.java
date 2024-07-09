@@ -22,5 +22,4 @@ public class PropertyFactory {
                 .setMaleRoom(maleRoom)
                 .setFemaleRoom(femaleRoom)
                 .build();
-    }
-}
+    }}

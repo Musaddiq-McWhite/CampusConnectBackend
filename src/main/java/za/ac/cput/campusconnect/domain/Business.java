@@ -21,7 +21,6 @@ public class Business {
     private String description;
 
     protected Business(){
-
     }
     private Business(Builder builder){
         this.businessID = builder.businessID;

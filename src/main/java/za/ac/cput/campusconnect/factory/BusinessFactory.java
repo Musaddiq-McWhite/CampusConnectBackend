@@ -28,5 +28,4 @@ public class BusinessFactory {
                 .setContact(contact)
                 .setDescription(description)
                 .build();
-    }
-}
+    }}
