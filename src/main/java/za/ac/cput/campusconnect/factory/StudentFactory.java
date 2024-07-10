@@ -1,5 +1,10 @@
 package za.ac.cput.campusconnect.factory;
-
+import za.ac.cput.domain.Student;
+import za.ac.cput.domain.Name;
+import za.ac.cput.domain.Demographic;
+import za.ac.cput.domain.Contact;
+import za.ac.cput.domain.AcademicInfo;
+import za.ac.cput.util.Helper;
 /**
  * FileName StudentFactory.java
  * Class: StudentFactory
