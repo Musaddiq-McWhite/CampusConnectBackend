@@ -22,6 +22,12 @@ public class Property {
 
     }
     private Property(Builder builder){
+        this.propertyID = builder.propertyID;
+        this.propertyOwner = builder.propertyOwner;
+        this.propertyName = builder.propertyName;
+        this.propertyAddress = builder.propertyAddress;
+        this.maleRoom = builder.maleRoom;
+        this.femaleRoom = builder.femaleRoom;
 
     }
 
@@ -121,6 +127,7 @@ public class Property {
         }
         public Property build() {
             return new Property(this);
-        }}
+        }
+    }
 
 }

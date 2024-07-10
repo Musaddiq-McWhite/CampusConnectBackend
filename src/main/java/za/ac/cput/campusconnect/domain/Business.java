@@ -16,6 +16,8 @@ public class Business {
     @Id
     private String businessID;
     private String businessName;
+    @OneToOne
+    @JoinColumn(name = "email", referencedColumnName = "email")
     private Contact contact;
     private String description;
 
