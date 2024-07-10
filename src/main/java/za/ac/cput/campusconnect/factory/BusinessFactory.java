@@ -11,8 +11,7 @@ import za.ac.cput.campusconnect.util.Helper;
  * Completion date:
  */
 
-public class BusinessFactory {
-    public static Business buildBusiness(String businessID, String businessName, String description,
+public class BusinessFactory { public static Business buildBusiness(String businessID, String businessName, String description,
                                          String contactID, int phoneNumber, String emailAddress, int emergencyContact) {
         if (Helper.isNullOrEmpty(businessID) || Helper.isNullOrEmpty(businessName) ||
                 Helper.isNullOrEmpty(description) || Helper.isNullOrEmpty(contactID) ||Helper.isNullOrEmpty(phoneNumber)

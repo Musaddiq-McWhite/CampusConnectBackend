@@ -20,7 +20,6 @@ public class Business {
     @JoinColumn(name = "email", referencedColumnName = "email")
     private Contact contact;
     private String description;
-
     protected Business(){
     }
     private Business(Builder builder){

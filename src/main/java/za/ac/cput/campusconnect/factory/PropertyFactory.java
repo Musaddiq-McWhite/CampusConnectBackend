@@ -8,8 +8,7 @@ import za.ac.cput.campusconnect.util.Helper;
  * Completion date:
  */
 
-public class PropertyFactory {
-    public static Property buildProperty(String propertyID, String propertyOwner, String propertyName,
+public class PropertyFactory { public static Property buildProperty(String propertyID, String propertyOwner, String propertyName,
                                          String propertyAddress,int maleRoom, int femaleRoom){
         if(Helper.isNullOrEmpty(propertyID) || Helper.isNullOrEmpty(propertyOwner) || Helper.isNullOrEmpty(propertyName)||
                 Helper.isNullOrEmpty(propertyAddress)|| Helper.isNullOrEmpty(maleRoom)|| Helper.isNullOrEmpty(femaleRoom)){

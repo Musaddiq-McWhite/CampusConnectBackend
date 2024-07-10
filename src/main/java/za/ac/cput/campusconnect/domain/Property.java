@@ -17,7 +17,6 @@ public class Property {
     private String propertyAddress;
     private int maleRoom;
     private int femaleRoom;
-
     protected Property(){
 
     }
