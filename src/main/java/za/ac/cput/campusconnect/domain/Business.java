@@ -13,7 +13,6 @@ import java.util.Objects;
  */
 @Entity
 public class Business {
-
     @Id
     private String businessID;
     private String businessName;

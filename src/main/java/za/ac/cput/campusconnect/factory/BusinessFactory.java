@@ -22,8 +22,7 @@ public class BusinessFactory {
         Contact contact = ContactFactory.buildContact(contactID,phoneNumber,emailAddress,emergencyContact);
         if (contact == null) {
             return null;
-        }
-        return new Business.Builder().setBusinessID(businessID)
+        }return new Business.Builder().setBusinessID(businessID)
                 .setBusinessName(businessName)
                 .setContact(contact)
                 .setDescription(description)
