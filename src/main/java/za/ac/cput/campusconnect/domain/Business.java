@@ -27,7 +27,6 @@ public class Business {
         this.businessName = builder.businessName;
         this.contact = builder.contact;
         this.description = builder.description;
-
     }
 
     public String getBusinessID() {

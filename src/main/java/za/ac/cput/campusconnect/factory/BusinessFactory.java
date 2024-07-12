@@ -12,13 +12,14 @@ import za.ac.cput.campusconnect.util.Helper;
  */
 
 public class BusinessFactory { public static Business buildBusiness(String businessID, String businessName, String description,
-                                         String contactID, int phoneNumber, String emailAddress, int emergencyContact) {
+                                                                    String phoneNumber, String email, String addressLine1, String addressLine2,
+                                                                    String city, String postalCode) {
         if (Helper.isNullOrEmpty(businessID) || Helper.isNullOrEmpty(businessName) ||
-                Helper.isNullOrEmpty(description) || Helper.isNullOrEmpty(contactID) ||Helper.isNullOrEmpty(phoneNumber)
-                || Helper.isNullOrEmpty(emailAddress) || Helper.isNullOrEmpty(emergencyContact)) {
+                Helper.isNullOrEmpty(description) ||Helper.isNullOrEmpty(phoneNumber)||Helper.isNullOrEmpty(email)||
+                Helper.isNullOrEmpty(addressLine1) || Helper.isNullOrEmpty(addressLine2)|| Helper.isNullOrEmpty(city)||Helper.isNullOrEmpty(postalCode)) {
             return null;
         }
-        Contact contact = ContactFactory.buildContact(contactID,phoneNumber,emailAddress,emergencyContact);
+        Contact contact = ContactFactory.createContact(phoneNumber,email,addressLine1, addressLine2,  city, postalCode);
         if (contact == null) {
             return null;
         }return new Business.Builder().setBusinessID(businessID)
