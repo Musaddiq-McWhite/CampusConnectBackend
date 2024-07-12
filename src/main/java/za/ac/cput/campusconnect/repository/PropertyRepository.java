@@ -1,11 +1,15 @@
 package za.ac.cput.campusconnect.repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import za.ac.cput.campusconnect.domain.Property;
 
 /**
  * FileName.java
  * Interface:
- * Author:
+ * Author: Aphelele Zimkhita Joka 218130260
  * Completion date:
  */
-
-public interface PropertyRepository {
+@Repository
+public interface PropertyRepository extends JpaRepository<Property, String > {
 }
+
