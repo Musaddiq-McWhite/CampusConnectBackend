@@ -1,8 +1,6 @@
 package za.ac.cput.campusconnect.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.domain.Student;
 import za.ac.cput.service.StudentService;
@@ -13,44 +11,31 @@ import java.util.List;
 @RequestMapping("/students")
 public class StudentController {
 
-    private final StudentService studentService;
-
     @Autowired
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
-    }
+    private StudentService studentService;
 
     @PostMapping("/create")
-    public ResponseEntity<Student> createStudent(@RequestBody Student student) {
-        Student createdStudent = studentService.create(student);
-        return new ResponseEntity<>(createdStudent, HttpStatus.CREATED);
+    public Student create(@RequestBody Student student) {
+        return studentService.create(student);
     }
 
     @GetMapping("/read/{studentID}")
-    public ResponseEntity<Student> getStudent(@PathVariable String studentID) {
-        Student student = studentService.read(studentID);
-        if (student != null) {
-            return new ResponseEntity<>(student, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public Student read(@PathVariable String studentID) {
+        return studentService.read(studentID);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Student> updateStudent(@RequestBody Student student) {
-        Student updatedStudent = studentService.update(student);
-        return new ResponseEntity<>(updatedStudent, HttpStatus.OK);
+    public Student update(@RequestBody Student student) {
+        return studentService.update(student);
     }
 
     @DeleteMapping("/delete/{studentID}")
-    public ResponseEntity<Void> deleteStudent(@PathVariable String studentID) {
+    public void delete(@PathVariable String studentID) {
         studentService.delete(studentID);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<Student>> getAllStudents() {
-        List<Student> studentList = studentService.getAllStudents();
-        return new ResponseEntity<>(studentList, HttpStatus.OK);
+    public List<Student> getAll() {
+        return studentService.getAllStudents();
     }
 }
