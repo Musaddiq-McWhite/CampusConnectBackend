@@ -1,0 +1,112 @@
+package za.ac.cput.campusconnect.controller;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import za.ac.cput.domain.Contact;
+import za.ac.cput.service.ContactService;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@WebMvcTest(ContactController.class)
+public class ContactControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
+    private ContactService contactService;
+
+    private Contact contact1;
+    private Contact contact2;
+/
+    @BeforeEach
+    public void setUp() {
+        contact1 = new Contact.Builder()
+                .setPhoneNumber("1234567890")
+                .setEmail("contact1@example.com")
+                .setAddressLine1("123 First St")
+                .setAddressLine2("Apt 1")
+                .setCity("CityOne")
+                .setPostalCode("11111")
+                .buildContact();
+
+        contact2 = new Contact.Builder()
+                .setPhoneNumber("0987654321")
+                .setEmail("contact2@example.com")
+                .setAddressLine1("456 Second St")
+                .setAddressLine2("Apt 2")
+                .setCity("CityTwo")
+                .setPostalCode("22222")
+                .buildContact();
+    }
+
+    @Test
+    public void testCreateContact() throws Exception {
+        given(contactService.create(any(Contact.class))).willReturn(contact1);
+
+        mockMvc.perform(post("/contacts/create")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"phoneNumber\":\"1234567890\",\"email\":\"contact1@example.com\",\"addressLine1\":\"123 First St\",\"addressLine2\":\"Apt 1\",\"city\":\"CityOne\",\"postalCode\":\"11111\"}"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.phoneNumber").value(contact1.getPhoneNumber()))
+                .andExpect(jsonPath("$.email").value(contact1.getEmail()));
+    }
+
+    @Test
+    public void testReadContact() throws Exception {
+        given(contactService.read(anyString())).willReturn(contact1);
+
+        mockMvc.perform(get("/contacts/read/{phoneNumber}", "1234567890"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.phoneNumber").value(contact1.getPhoneNumber()))
+                .andExpect(jsonPath("$.email").value(contact1.getEmail()));
+    }
+
+    @Test
+    public void testUpdateContact() throws Exception {
+        given(contactService.update(any(Contact.class))).willReturn(contact1);
+
+        mockMvc.perform(put("/contacts/update")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"phoneNumber\":\"1234567890\",\"email\":\"contact1@example.com\",\"addressLine1\":\"123 First St\",\"addressLine2\":\"Apt 1\",\"city\":\"CityOne\",\"postalCode\":\"11111\"}"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.phoneNumber").value(contact1.getPhoneNumber()))
+                .andExpect(jsonPath("$.email").value(contact1.getEmail()));
+    }
+
+    @Test
+    public void testDeleteContact() throws Exception {
+        mockMvc.perform(delete("/contacts/delete/{phoneNumber}", "1234567890"))
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
+    public void testGetAllContacts() throws Exception {
+        List<Contact> contacts = Arrays.asList(contact1, contact2);
+        given(contactService.getAllContacts()).willReturn(contacts);
+
+        mockMvc.perform(get("/contacts/all"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(contacts.size()))
+                .andExpect(jsonPath("$[0].phoneNumber").value(contact1.getPhoneNumber()))
+                .andExpect(jsonPath("$[1].phoneNumber").value(contact2.getPhoneNumber()));
+    }
+}
+
