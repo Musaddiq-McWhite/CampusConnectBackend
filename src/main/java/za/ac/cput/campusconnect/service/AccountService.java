@@ -9,6 +9,7 @@ package za.ac.cput.campusconnect.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+// Removed the line 'import org.springframework.transaction.annotation.Transactional;'
 import za.ac.cput.campusconnect.domain.Account;
 import za.ac.cput.campusconnect.repository.AccountRepository;
 
