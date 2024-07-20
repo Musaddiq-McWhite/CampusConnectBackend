@@ -9,7 +9,7 @@ package za.ac.cput.campusconnect.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
+// Removed the line 'import org.springframework.transaction.annotation.Transactional;'
 import za.ac.cput.campusconnect.domain.Account;
 import za.ac.cput.campusconnect.repository.AccountRepository;
 
@@ -33,7 +33,7 @@ public class AccountService implements IService<Account, String> {
     @Override
     public Account update(Account account) {return repository.save(account);}
 
-    public void delete(String accountNumber) {repository.deleteAccountByAccountNumber(accountNumber);};
+    public void delete(String accountNumber) {repository.deleteAccountByAccountNumber(accountNumber);}
 
     public Set<Account> findAll(String userType) {return repository.findAllByUserType(userType);}
 
