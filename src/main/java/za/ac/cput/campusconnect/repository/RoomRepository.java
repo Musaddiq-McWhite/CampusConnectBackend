@@ -1,5 +1,11 @@
 package za.ac.cput.campusconnect.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import za.ac.cput.campusconnect.domain.Room;
+
+import java.util.List;
+
 /**
  * FileName.java
  * Interface:
@@ -7,5 +13,9 @@ package za.ac.cput.campusconnect.repository;
  * Completion date:
  */
 
-public interface RoomRepository {
+@Repository
+public interface RoomRepository extends JpaRepository<Room, String> {
+    Room findRoomByRoomID(String roomID);
+    List<Room> findAllByOccupiedIsTrue(Boolean occupied);
+    List<Room> findAllByOccupiedIsFalse(Boolean occupied);
 }
