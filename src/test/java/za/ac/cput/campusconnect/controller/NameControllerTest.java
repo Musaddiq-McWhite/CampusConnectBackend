@@ -1,4 +1,4 @@
-package za.ac.cput.controller;
+package za.ac.cput.campusconnect.controller;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
