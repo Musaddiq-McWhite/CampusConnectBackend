@@ -1,37 +1,30 @@
-package za.ac.cput.campusconnect.domain;
-
 /**
  * FileName Student.java
  * Class: Student
  * Author: Kabo Khudunyane
  * Completion date: 9 July 2024
  */
-
-package za.ac.cput.domain;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+package za.ac.cput.campusconnect.domain;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 @Entity
 @Table(name = "Student")
 public class Student {
     @Id
-    private String studentID;
-    @OneToOne
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long studentID;
+    @Embedded
     private Name name;
-    @OneToOne
+    @Embedded
     private Demographic demographic;
-    @OneToOne
+    @Embedded
     private Contact contact;
-    @OneToOne
+    @Embedded
     private AcademicInfo academicInfo;
     private String username;
     private String studentPassword;
-
     protected Student() {}
-
     private Student(Builder builder) {
         this.studentID = builder.studentID;
         this.name = builder.name;
@@ -42,7 +35,7 @@ public class Student {
         this.studentPassword = builder.studentPassword;
     }
 
-    public String getStudentID() {
+    public Long getStudentID() {
         return studentID;
     }
 
@@ -75,13 +68,7 @@ public class Student {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return Objects.equals(studentID, student.studentID) &&
-                Objects.equals(name, student.name) &&
-                Objects.equals(demographic, student.demographic) &&
-                Objects.equals(contact, student.contact) &&
-                Objects.equals(academicInfo, student.academicInfo) &&
-                Objects.equals(username, student.username) &&
-                Objects.equals(studentPassword, student.studentPassword);
+        return Objects.equals(studentID, student.studentID) && Objects.equals(name, student.name) && Objects.equals(demographic, student.demographic) && Objects.equals(contact, student.contact) && Objects.equals(academicInfo, student.academicInfo) && Objects.equals(username, student.username) && Objects.equals(studentPassword, student.studentPassword);
     }
 
     @Override
@@ -103,14 +90,14 @@ public class Student {
     }
 
     public static class Builder {
-        private String studentID;
+        private Long studentID;
         private Name name;
         private Demographic demographic;
         private Contact contact;
         private AcademicInfo academicInfo;
         private String username;
         private String studentPassword;
-        public Builder setStudentID(String studentID) {
+        public Builder setStudentID(Long studentID) {
             this.studentID = studentID;
             return this;
         }
@@ -139,7 +126,7 @@ public class Student {
             return this;
         }
 
-        public String getStudentID() {
+        public Long getStudentID() {
             return studentID;
         }
 

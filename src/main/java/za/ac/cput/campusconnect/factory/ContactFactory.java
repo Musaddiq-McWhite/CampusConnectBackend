@@ -1,21 +1,11 @@
 package za.ac.cput.campusconnect.factory;
-import za.ac.cput.domain.Contact;
-import za.ac.cput.util.Helper;
-
-/**
- * FileName ContactFactory.java
- * Class: ContactFactory
- * Author: Matthew McGregor
- * Completion date: 9 July 2024
- */
-
+import za.ac.cput.campusconnect.domain.Contact;
+import za.ac.cput.campusconnect.util.Helper;
 public class ContactFactory {
-    public static Contact createContact(String phoneNumber, String email, String addressLine1, String addressLine2, String city, String postalCode) {
-
-        if (Helper.isNullOrEmpty(phoneNumber) || Helper.isNullOrEmpty(email) || Helper.isNullOrEmpty(addressLine1) ||
-                Helper.isNullOrEmpty(city) || Helper.isNullOrEmpty(postalCode))
-            return null;
-
+    public static Contact buildContact(String phoneNumber, String email, String addressLine1, String addressLine2, String city, String postalCode) {
+        if (Helper.isNullOrEmpty(phoneNumber) || Helper.isNullOrEmpty(email) || Helper.isNullOrEmpty(addressLine1) || Helper.isNullOrEmpty(city) || Helper.isNullOrEmpty(postalCode)) {
+            throw new IllegalArgumentException("Phone number, email, address line 1, city, and postal code are required.");
+        }
         return new Contact.Builder()
                 .setPhoneNumber(phoneNumber)
                 .setEmail(email)
@@ -26,4 +16,3 @@ public class ContactFactory {
                 .buildContact();
     }
 }
-

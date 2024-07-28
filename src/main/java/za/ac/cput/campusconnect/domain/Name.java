@@ -1,13 +1,13 @@
 package za.ac.cput.campusconnect.domain;
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.io.Serializable;
 import java.util.Objects;
-@Entity
-@Table(name = "Name")
-public class Name{
-    @Id
+@Embeddable
+public class Name implements Serializable {
     private String firstName;
     private String middleName;
     private String lastName;
