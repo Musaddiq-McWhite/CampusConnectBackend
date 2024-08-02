@@ -1,28 +1,18 @@
-package za.ac.cput.factory;
-
+package za.ac.cput.campusconnect.factory;
 import org.junit.jupiter.api.Test;
-import za.ac.cput.domain.Contact;
-import za.ac.cput.factory.ContactFactory;
-
+import za.ac.cput.campusconnect.domain.Contact;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-
 public class ContactFactoryTest {
-
-    // Test case to verify successful Contact creation
     @Test
     public void testCreateContact(){
-        Contact contact = ContactFactory.createContact("1234567890", "john@example.com", "123 Main St", "", "Springfield", "12345");
-
-        assertNotNull(contact);  // Assert that the created Contact object is not null
-        System.out.println(contact);  // Print the created Contact object
+        Contact contact = ContactFactory.buildContact("1234567890", "john@example.com", "123 Main St", "", "Springfield", "12345");
+        assertNotNull(contact);
+        System.out.println(contact);
     }
-
-    // Test case to verify Contact creation with a failing condition
     @Test
     public void testCreateContactWithFail(){
-        Contact contact = ContactFactory.createContact("", "john@example.com", "123 Main St", "", "Springfield", "12345");
-
-        assertNull(contact);  // Assert that the created Contact object is null
+        Contact contact = ContactFactory.buildContact("", "john@example.com", "123 Main St", "", "Springfield", "12345");
+        assertNull(contact);
     }
 }

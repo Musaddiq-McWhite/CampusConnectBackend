@@ -35,7 +35,7 @@ class RoomServiceTest {
     @Test
     @Order(1)
     void setUp() {
-        contact = ContactFactory.createContact("12345678","test@email.com","1 test road","Test area","Test Town","80085");
+        contact = ContactFactory.buildContact("12345678","test@email.com","1 test road","Test area","Test Town","80085");
         business = BusinessFactory.buildBusiness("123","Test Business","Business made for testing purposes",contact.getPhoneNumber(),contact.getEmail(),contact.getAddressLine1(),contact.getAddressLine2(),contact.getCity(),contact.getPostalCode());
         property = PropertyFactory.buildProperty("123", business.getBusinessName(),"Test Residency", contact.getAddressLine1() + ", " + contact.getAddressLine2() + ", " + contact.getCity(),15,15);
         room1 = RoomFactory.buildRoom("123",property,1,false);

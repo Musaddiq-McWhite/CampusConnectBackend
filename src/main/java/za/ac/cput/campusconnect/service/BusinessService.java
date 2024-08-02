@@ -20,7 +20,7 @@ public class BusinessService implements IBusinessService{
     @Autowired
     private BusinessRepository repository;
     BusinessService(BusinessRepository repository){this.repository = repository;}
-@Override
+    @Override
     public Business create(Business business){return repository.save(business);}
 
     @Override
