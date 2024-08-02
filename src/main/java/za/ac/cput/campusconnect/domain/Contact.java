@@ -1,31 +1,26 @@
-package za.ac.cput.campusconnect.domain;
-
 /**
  * FileName Contact.java
  * Class: Conact
  * Author: Matthew McGregor
  * Completion date: 9 July 2024
  */
-
+package za.ac.cput.campusconnect.domain;
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.io.Serializable;
 import java.util.Objects;
-
-@Entity
-@Table(name = "Contact")
-public class Contact {
-    @Id
+@Embeddable
+public class Contact implements Serializable {
     private String phoneNumber;
     private String email;
     private String addressLine1;
     private String addressLine2;
     private String city;
     private String postalCode;
-
     protected Contact() {}
-
     private Contact(Builder builder) {
         this.phoneNumber = builder.phoneNumber;
         this.email = builder.email;
