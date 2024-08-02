@@ -1,8 +1,6 @@
 package za.ac.cput.campusconnect.domain;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
@@ -13,9 +11,11 @@ import java.util.Objects;
  * Completion date:
  */
 
+@Entity
 public class Room {
     @Id
-    private String roomID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long roomID;
     @ManyToOne
     @JoinColumn(name = "propertyID", referencedColumnName = "propertyID")
     private Property property;
@@ -32,7 +32,7 @@ public class Room {
         this.occupied = builder.occupied;
     }
 
-    public String getRoomID() {
+    public Long getRoomID() {
         return roomID;
     }
 
@@ -72,12 +72,12 @@ public class Room {
     }
 
     public static class Builder{
-        private String roomID;
+        private Long roomID;
         private Property property;
         private int roomNumber;
         private boolean occupied;
 
-        public Builder setRoomID(String roomID){
+        public Builder setRoomID(Long roomID){
             this.roomID = roomID;
             return this;
         }

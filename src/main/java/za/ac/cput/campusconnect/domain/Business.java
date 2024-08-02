@@ -13,11 +13,10 @@ import java.util.Objects;
 @Entity
 public class Business {
     @Id
-    private String businessID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long businessID;
     private String businessName;
-    @OneToOne
-    @JoinColumn(name = "email", referencedColumnName = "email")
-
+    @Embedded
     private Contact contact;
     private String description;
 
@@ -32,7 +31,7 @@ public class Business {
 
     }
 
-    public String getBusinessID() {
+    public Long getBusinessID() {
         return businessID;
     }
 
@@ -71,13 +70,13 @@ public class Business {
                 '}';
     }
     public static class Builder{
-        private String businessID;
+        private Long businessID;
         private String businessName;
         private Contact contact;
         private String description;
 
 
-        public Builder setBusinessID(String businessID) {
+        public Builder setBusinessID(Long businessID) {
             this.businessID = businessID;
             return this;
         }

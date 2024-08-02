@@ -3,6 +3,7 @@ package za.ac.cput.campusconnect.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.campusconnect.domain.Property;
+import za.ac.cput.campusconnect.domain.Student;
 import za.ac.cput.campusconnect.repository.PropertyRepository;
 
 import java.util.List;
@@ -14,40 +15,32 @@ import java.util.List;
  * Completion date:
  */
 @Service
-public class PropertyService implements IPropertyService{
+public class PropertyService implements IService<Property, Long>{
 
 
     @Autowired
     private PropertyRepository repository;
 
-    PropertyService(PropertyRepository repository){this.repository = repository;}
-
+    PropertyService(PropertyRepository repository)
+    {this.repository = repository;}
     @Override
     public Property create(Property property) {
         return repository.save(property);
     }
-
     @Override
-    public Property read(String propertyID) {
+    public Property read(Long propertyID) {
         return this.repository.findById(propertyID).orElse(null);
     }
-
     @Override
     public Property update(Property property) {
         return repository.save(property);
     }
-
     @Override
-    public void delete(String id) {
+    public void delete(Long id) {
         repository.deleteById(id);
     }
-
     @Override
-    public List<Property> getall() {
+    public List<Property> getAll() {
         return repository.findAll() ;
     }
-
-
-
-
 }

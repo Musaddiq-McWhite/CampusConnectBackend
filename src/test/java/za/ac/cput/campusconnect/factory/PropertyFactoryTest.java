@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PropertyFactoryTest {
     @Test
     void testBuildEmployee() {
-        Property p = PropertyFactory.buildProperty("2181", "Aphelele", "IvyProperty", "IvyProperties", 18, 18);
+        Property p = PropertyFactory.buildProperty(123456L, "Aphelele", "IvyProperty", "IvyProperties", 18, 18);
         assertNotNull(p);
         System.out.println(p.toString());
     }

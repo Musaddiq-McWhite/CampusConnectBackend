@@ -14,7 +14,8 @@ import java.util.Objects;
 @Entity
 public class Account {
     @Id
-    private String accountNumber;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long accountNumber;
     private String username;
     private String password;
     private String userType;
@@ -27,7 +28,7 @@ public class Account {
         this.password = builder.password;
         this.userType = builder.userType;
     }
-    public String getAccountNumber() {return accountNumber;}
+    public Long getAccountNumber() {return accountNumber;}
 
     public String getUsername() {return username;}
 
@@ -59,12 +60,12 @@ public class Account {
     }
 
     public static class Builder {
-        private String accountNumber;
+        private Long accountNumber;
         private String username;
         private String password;
         private String userType;
 
-        public Builder setAccountNumber(String accountNumber) {
+        public Builder setAccountNumber(Long accountNumber) {
             this.accountNumber = accountNumber;
             return this;
         }

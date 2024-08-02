@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.*;
 
 import za.ac.cput.campusconnect.domain.Account;
 import za.ac.cput.campusconnect.service.AccountService;
+
+import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("Account")
+@RequestMapping("account")
 public class AccountController {
     @Autowired
     AccountService accountService;
@@ -32,7 +34,7 @@ public class AccountController {
     }
 
     @GetMapping("/read/{accountNumber}")
-    public ResponseEntity<?> read(@PathVariable("accountNumber") String accountNumber) {
+    public ResponseEntity<?> read(@PathVariable("accountNumber") Long accountNumber) {
         Account account = accountService.read(accountNumber);
         if (account == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -41,7 +43,7 @@ public class AccountController {
     }
 
     @GetMapping("getAll")
-    public Set<Account> getAll() {return accountService.findAll();}
+    public List<Account> getAll() {return accountService.getAll();}
 
     @PostMapping("/update")
     public ResponseEntity<?> update(@RequestBody Account account) {

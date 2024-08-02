@@ -12,4 +12,6 @@ import za.ac.cput.campusconnect.domain.Administrator;
  */
 @Repository
 public interface AdministratorRepository extends JpaRepository<Administrator, Integer> {
+    Administrator findAdministratorByAdminId(int adminId);
+    void deleteAdministratorByAdminId(int adminId);
 }

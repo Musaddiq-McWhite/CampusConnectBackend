@@ -11,6 +11,8 @@ import za.ac.cput.campusconnect.domain.Property;
  * Completion date:
  */
 @Repository
-public interface PropertyRepository extends JpaRepository<Property, String > {
-
+public interface PropertyRepository extends JpaRepository<Property, Long > {
+    Property findPropertyByPropertyID(Long propertyID);
+    Property findPropertyByPropertyOwnerIgnoreCase(String propertyOwner);
+    Property findPropertyByPropertyAddress(String propertyAddress);
 }

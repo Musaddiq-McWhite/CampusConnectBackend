@@ -25,7 +25,7 @@ public class RoomController {
 
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody Room room){
-        Room created = roomService.save(room);
+        Room created = roomService.create(room);
         if(created==null){
             return ResponseEntity.badRequest().body("Error creating Room");
         }
@@ -33,7 +33,7 @@ public class RoomController {
     }
 
     @PostMapping("/read{roomID}")
-    public ResponseEntity<?> read(@PathVariable String roomID){
+    public ResponseEntity<?> read(@PathVariable Long roomID){
         Room read = roomService.read(roomID);
         if (read==null){
             return ResponseEntity.badRequest().body("Room with Room ID: " + roomID + " does not exist");
@@ -48,7 +48,7 @@ public class RoomController {
 
     @PostMapping("/update")
     public ResponseEntity<?> update(@RequestBody Room room){
-        Room updatedRoom = roomService.save(room);
+        Room updatedRoom = roomService.create(room);
         if (updatedRoom==null){
             return ResponseEntity.badRequest().body("Error updating room");
         }

@@ -46,7 +46,7 @@ class StudentServiceTest {
     }
     @Test
     void getAllStudents() {
-        List<Student> students = studentService.getAllStudents();
+        List<Student> students = studentService.getAll();
         assertNotNull(students);
         assertFalse(students.isEmpty());
         System.out.println("All Students: " + students);

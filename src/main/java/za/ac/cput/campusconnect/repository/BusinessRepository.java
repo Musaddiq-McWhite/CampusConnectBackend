@@ -11,5 +11,6 @@ import za.ac.cput.campusconnect.domain.Business;
  * Completion date:
  */
 @Repository
-public interface BusinessRepository extends JpaRepository<Business, String> {
+public interface BusinessRepository extends JpaRepository<Business, Long> {
+    Business findBusinessByBusinessID(Long businessID);
 }

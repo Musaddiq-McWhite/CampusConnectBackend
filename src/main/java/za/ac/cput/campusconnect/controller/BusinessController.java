@@ -23,13 +23,13 @@ public class BusinessController {
     @PostMapping("/create")
     public Business create(@RequestBody Business business){return businessService.create(business);}
     @GetMapping("/read/{businessID}")
-    public Business read(@PathVariable String businessID){return businessService.read(businessID);}
+    public Business read(@PathVariable Long businessID){return businessService.read(businessID);}
     @PostMapping("/update")
     public Business update (@RequestBody Business business){return businessService.update(business);}
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable String id){businessService.delete(id);}
-    @GetMapping("/getall")
-    public List<Business> getall(){return businessService.getall();}
+    public void delete(@PathVariable Long id){businessService.delete(id);}
+    @GetMapping("/getAll")
+    public List<Business> getall(){return businessService.getAll();}
 
 
 }
