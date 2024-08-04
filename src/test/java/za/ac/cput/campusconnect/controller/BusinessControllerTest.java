@@ -17,12 +17,12 @@ public class BusinessControllerTest {
 
         @Autowired
         private TestRestTemplate restTemplate;
-        private final String BASE_URL= "http://localhost:8080/CampusConnectDb/business";
+        private final String BASE_URL= "/business";
         private static Business business;
 
         @BeforeAll
         public static void setup() {
-            business = BusinessFactory.buildBusiness("30260", "IvyProperties", "student accomodation", "0218130260", "ivyproperties@gmail.com", "13 Ntlazane Street", "Khayelitsha","Cape Town","7784");
+            business = BusinessFactory.buildBusiness(30260L, "IvyProperties", "student accomodation", "0218130260", "ivyproperties@gmail.com", "13 Ntlazane Street", "Khayelitsha","Cape Town","7784");
 
         }
         @Test

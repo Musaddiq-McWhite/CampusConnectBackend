@@ -16,13 +16,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class PropertyControllerTest {
     @Autowired
     private TestRestTemplate restTemplate;
-    private final String BASE_URL= "http://localhost:8080/CampusConnectDb/property";
+    private final String BASE_URL= "/property";
     private static Property property;
 
 
     @BeforeAll
     public static void setup() {
-        property = PropertyFactory.buildProperty("181", "Joka", "JayProperty", "36 Cape Cape", 20, 20);
+        property = PropertyFactory.buildProperty(181L, "Joka", "JayProperty", "36 Cape Cape", 20, 20);
 
     }
     @Test

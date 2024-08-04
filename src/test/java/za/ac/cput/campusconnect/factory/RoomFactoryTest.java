@@ -14,9 +14,9 @@ class RoomFactoryTest {
     @Test
     @Order(1)
     void testBuildTheatre(){
-        //PlaceHolder While property is under Construction
-        Property property = new Property();
-        Room room = RoomFactory.buildRoom("123",property,69,true);
+
+        Property property = PropertyFactory.buildProperty(654321L, "Aphelele", "IvyProperty", "IvyProperties", 18, 18);
+        Room room = RoomFactory.buildRoom(123L,property,69,true);
         assertNotNull(room);
         System.out.println(room);
     }

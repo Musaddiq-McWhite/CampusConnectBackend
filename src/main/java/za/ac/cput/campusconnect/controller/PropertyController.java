@@ -22,13 +22,13 @@ public class PropertyController {
     @PostMapping("/create")
     public Property create(@RequestBody Property property){return propertyService.create(property);}
     @GetMapping("/read/{propertyID}")
-    public Property read(@PathVariable String propertyID){return propertyService.read(propertyID);}
+    public Property read(@PathVariable Long propertyID){return propertyService.read(propertyID);}
     @PostMapping("/update")
     public Property update (@RequestBody Property property){return propertyService.update(property);}
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable String id){propertyService.delete(id);}
-    @GetMapping("/getall")
-    public List<Property> getall(){return propertyService.getall();}
+    public void delete(@PathVariable Long id){propertyService.delete(id);}
+    @GetMapping("/getAll")
+    public List<Property> getAll(){return propertyService.getAll();}
 
 
 }

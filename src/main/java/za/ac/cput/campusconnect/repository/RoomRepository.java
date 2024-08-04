@@ -14,8 +14,8 @@ import java.util.List;
  */
 
 @Repository
-public interface RoomRepository extends JpaRepository<Room, String> {
-    Room findRoomByRoomID(String roomID);
-    List<Room> findAllByOccupiedIsTrue(Boolean occupied);
-    List<Room> findAllByOccupiedIsFalse(Boolean occupied);
+public interface RoomRepository extends JpaRepository<Room, Long> {
+    Room findRoomByRoomID(Long roomID);
+    //List<Room> findAllByOccupiedIsTrue(Boolean occupied);
+    //List<Room> findAllByOccupiedIsFalse(Boolean occupied);
 }

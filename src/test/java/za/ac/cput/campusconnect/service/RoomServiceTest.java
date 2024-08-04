@@ -35,13 +35,13 @@ class RoomServiceTest {
     @Test
     @Order(1)
     void setUp() {
-        contact = ContactFactory.buildContact("12345678","test@email.com","1 test road","Test area","Test Town","80085");
-        business = BusinessFactory.buildBusiness("123","Test Business","Business made for testing purposes",contact.getPhoneNumber(),contact.getEmail(),contact.getAddressLine1(),contact.getAddressLine2(),contact.getCity(),contact.getPostalCode());
-        property = PropertyFactory.buildProperty("123", business.getBusinessName(),"Test Residency", contact.getAddressLine1() + ", " + contact.getAddressLine2() + ", " + contact.getCity(),15,15);
-        room1 = RoomFactory.buildRoom("123",property,1,false);
+        contact = ContactFactory.buildContact("1234567890", "john@example.com", "123 Main St", "", "Springfield", "12345");
+        business = BusinessFactory.buildBusiness(30260L, "IvyProperties", "student accomodation", "0218130260", "apelelejoka@gmail.com", "13 Ntlazane Street", "Khayelitsha","Cape Town","7784");
+        property = PropertyFactory.buildProperty(2181L, "Aphelele", "IvyProperty", "IvyProperties", 18, 18);
+        room1 = RoomFactory.buildRoom(123L,property,1,false);
         assertNotNull(room1);
         System.out.println(room1);
-        room2 = RoomFactory.buildRoom("321",property,2,false);
+        room2 = RoomFactory.buildRoom(321L,property,2,false);
         assertNotNull(room2);
         System.out.println(room2);
     }
@@ -49,10 +49,13 @@ class RoomServiceTest {
     @Test
     @Order(2)
     void save() {
-        Room saved1 = roomService.save(room1);
+        Property created1 = propertyService.create(property);
+        assertNotNull(created1);
+        System.out.println(created1);
+        Room saved1 = roomService.create(room1);
         assertNotNull(saved1);
         System.out.println(saved1);
-        Room saved2 = roomService.save(room2);
+        Room saved2 = roomService.create(room2);
         assertNotNull(saved2);
         System.out.println(saved2);
     }
@@ -68,7 +71,7 @@ class RoomServiceTest {
     @Test
     @Order(5)
     void deleteByID() {
-        roomService.deleteByID(room2.getRoomID());
+        roomService.delete(room2.getRoomID());
         System.out.println("Room 2 deleted successfully");
     }
 

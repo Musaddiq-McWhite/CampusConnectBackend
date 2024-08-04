@@ -14,11 +14,10 @@ import java.util.Set;
  */
 
 
-public interface AccountRepository extends JpaRepository<Account, String> {
+public interface AccountRepository extends JpaRepository<Account, Long> {
 
-        public Account findAccountByAccountNumber(String accountNumber);
+        Account findAccountByAccountNumber(Long accountNumber);
         Set<Account> findAllByUserType(String userType);
-        void deleteAccountByAccountNumber(String accountNumber);
+        void deleteAccountByAccountNumber(Long accountNumber);
         List<Account> findAll();
-
 }

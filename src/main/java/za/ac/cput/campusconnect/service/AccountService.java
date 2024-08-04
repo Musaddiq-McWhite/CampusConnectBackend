@@ -12,11 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import za.ac.cput.campusconnect.domain.Account;
 import za.ac.cput.campusconnect.repository.AccountRepository;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class AccountService implements IService<Account, String> {
+public class AccountService implements IService<Account, Long> {
 
     private final AccountRepository repository;
 
@@ -27,15 +28,15 @@ public class AccountService implements IService<Account, String> {
     public Account create(Account account) {return repository.save(account);}
 
     @Override
-    public Account read(String accountNumber) {return repository.findAccountByAccountNumber(accountNumber);}
+    public Account read(Long accountNumber) {return repository.findAccountByAccountNumber(accountNumber);}
 
     @Override
     public Account update(Account account) {return repository.save(account);}
 
-    public void delete(String accountNumber) {repository.deleteAccountByAccountNumber(accountNumber);}
+    public void delete(Long accountNumber) {repository.deleteAccountByAccountNumber(accountNumber);}
 
-    public Set<Account> findAll(String userType) {return repository.findAllByUserType(userType);}
+    public Set<Account> getAll(String userType) {return repository.findAllByUserType(userType);}
 
-    public Set<Account> findAll() {return repository.findAll().stream().collect(Collectors.toSet());}
+    public List<Account> getAll() {return repository.findAll();}
 
 }

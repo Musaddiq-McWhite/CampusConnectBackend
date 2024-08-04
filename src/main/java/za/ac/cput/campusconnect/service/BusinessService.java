@@ -1,12 +1,11 @@
 package za.ac.cput.campusconnect.service;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.campusconnect.domain.Business;
+import za.ac.cput.campusconnect.domain.Student;
 import za.ac.cput.campusconnect.repository.BusinessRepository;
 
 import java.util.List;
-
 /**
  * FileName.java
  * Class:
@@ -14,9 +13,7 @@ import java.util.List;
  * Completion date:
  */
 @Service
-public class BusinessService implements IBusinessService{
-
-
+public class BusinessService implements IService<Business, Long>{
     @Autowired
     private BusinessRepository repository;
     BusinessService(BusinessRepository repository){this.repository = repository;}
@@ -24,16 +21,16 @@ public class BusinessService implements IBusinessService{
     public Business create(Business business){return repository.save(business);}
 
     @Override
-    public Business read(String businessID) {return this.repository.findById(businessID).orElse(null);}
+    public Business read(Long businessID) {return this.repository.findById(businessID).orElse(null);}
 
     @Override
     public Business update(Business business) {return repository.save(business);}
 
     @Override
-    public void delete(String id) {repository.deleteById(id);}
+    public void delete(Long id) {repository.deleteById(id);}
 
     @Override
-    public List<Business> getall() {return repository.findAll();}
+    public List<Business> getAll() {return repository.findAll();}
 
 
 

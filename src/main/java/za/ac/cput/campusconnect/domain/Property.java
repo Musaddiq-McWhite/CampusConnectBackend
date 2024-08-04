@@ -13,7 +13,8 @@ import java.util.Objects;
 @Entity
 public class Property {
     @Id
-    private String propertyID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long propertyID;
     private String propertyOwner;
     private String propertyName;
     private String propertyAddress;
@@ -33,7 +34,7 @@ public class Property {
 
     }
 
-    public String getPropertyID() {
+    public Long getPropertyID() {
         return propertyID;
     }
 
@@ -82,14 +83,14 @@ public class Property {
                 '}';
     }
     public static class Builder{
-        private String propertyID;
+        private Long propertyID;
         private String propertyOwner;
         private String propertyName;
         private String propertyAddress;
         private int maleRoom;
         private int femaleRoom;
 
-        public Builder setPropertyID(String propertyID) {
+        public Builder setPropertyID(Long propertyID) {
             this.propertyID = propertyID;
             return this;
         }

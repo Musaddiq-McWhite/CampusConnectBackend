@@ -32,7 +32,8 @@ public class StudentService implements IService<Student, Long> {
     public void delete(Long studentID) {
         studentRepository.deleteByStudentID(studentID);
     }
-    public List<Student> getAllStudents() {
+    @Override
+    public List<Student> getAll() {
         return studentRepository.findAll();
     }
 }

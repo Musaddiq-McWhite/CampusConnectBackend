@@ -20,11 +20,11 @@ public class PropertyServiceTest {
 
     @Test
      void a_setup(){
-        property1 = PropertyFactory.buildProperty("2181", "Aphelele", "IvyProperty", "IvyProperties", 18, 18);
+        property1 = PropertyFactory.buildProperty(2181L, "Aphelele", "IvyProperty", "IvyProperties", 18, 18);
         assertNotNull(property1);
         System.out.println(property1);
 
-        property2 = PropertyFactory.buildProperty("181", "Joka", "JayProperty", "36 Cape Cape", 20, 20);
+        property2 = PropertyFactory.buildProperty(181L, "Joka", "JayProperty", "36 Cape Cape", 20, 20);
         assertNotNull(property2);
         System.out.println(property2);
     }
@@ -54,6 +54,6 @@ public class PropertyServiceTest {
     }
     @Test
     void e_getall(){
-        System.out.println(propertyService.getall());
+        System.out.println(propertyService.getAll());
     }
 }
