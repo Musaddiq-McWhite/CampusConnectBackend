@@ -8,7 +8,6 @@ import za.ac.cput.campusconnect.domain.Room;
 import za.ac.cput.campusconnect.service.RoomService;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * FileName.java
@@ -32,7 +31,7 @@ public class RoomController {
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
-    @PostMapping("/read{roomID}")
+    @GetMapping("/read{roomID}")
     public ResponseEntity<?> read(@PathVariable Long roomID){
         Room read = roomService.read(roomID);
         if (read==null){
@@ -41,7 +40,7 @@ public class RoomController {
         return ResponseEntity.ok(read);
     }
 
-    @PostMapping("/getAll")
+    @GetMapping("/getAll")
     public List<Room> getAll(){
         return roomService.getAll();
     }

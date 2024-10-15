@@ -16,7 +16,6 @@ import za.ac.cput.campusconnect.domain.Account;
 import za.ac.cput.campusconnect.service.AccountService;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("account")

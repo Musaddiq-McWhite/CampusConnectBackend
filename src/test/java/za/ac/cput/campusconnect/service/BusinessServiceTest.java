@@ -17,11 +17,11 @@ public class BusinessServiceTest {
     private static Business business2;
     @Test
     void a_setup(){
-        business1 = BusinessFactory.buildBusiness(30260L, "IvyProperties", "student accomodation", "0218130260", "ivyproperties@gmail.com", "13 Ntlazane Street", "Khayelitsha","Cape Town","7784");
+        business1 = BusinessFactory.buildBusiness("IvyProperties", "student accomodation", "0218130260", "ivyproperties@gmail.com", "13 Ntlazane Street", "Khayelitsha","Cape Town","7784");
         assertNotNull(business1);
         System.out.println(business1);
 
-        business2 = BusinessFactory.buildBusiness(260L, "JokaProperties", "student accomodation", "0718130260", "joka@gmail.com", "13 Cape Street", "Khayelitsha","Cape Town","7784");
+        business2 = BusinessFactory.buildBusiness("JokaProperties", "student accomodation", "0718130260", "joka@gmail.com", "13 Cape Street", "Khayelitsha","Cape Town","7784");
         assertNotNull(business1);
         System.out.println(business1);
      }
