@@ -82,7 +82,7 @@ public class Business {
         }
 
         public Builder setBusinessName(String businessName) {
-            businessName = businessName;
+            this.businessName = businessName;
             return this;
         }
 

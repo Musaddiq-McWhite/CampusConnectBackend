@@ -1,5 +1,6 @@
 package za.ac.cput.campusconnect.factory;
 
+import za.ac.cput.campusconnect.domain.Business;
 import za.ac.cput.campusconnect.domain.Property;
 import za.ac.cput.campusconnect.util.Helper;
 
@@ -11,14 +12,14 @@ import za.ac.cput.campusconnect.util.Helper;
  */
 
 public class PropertyFactory {
-    public static Property buildProperty(Long propertyID, String propertyOwner, String propertyName,
+    public static Property buildProperty(Business business, String propertyName,
                                          String propertyAddress,int maleRoom, int femaleRoom){
-        if(Helper.isNullOrEmpty(propertyID) || Helper.isNullOrEmpty(propertyOwner) || Helper.isNullOrEmpty(propertyName)||
+        if(Helper.isNullOrEmpty(business) || Helper.isNullOrEmpty(propertyName)||
                 Helper.isNullOrEmpty(propertyAddress)|| Helper.isNullOrEmpty(maleRoom)|| Helper.isNullOrEmpty(femaleRoom)){
             return null;
         }
-        return new Property.Builder().setPropertyID(propertyID)
-                .setPropertyOwner(propertyOwner)
+        return new Property.Builder()
+                .setBusiness(business)
                 .setPropertyName(propertyName)
                 .setPropertyAddress(propertyAddress)
                 .setMaleRoom(maleRoom)

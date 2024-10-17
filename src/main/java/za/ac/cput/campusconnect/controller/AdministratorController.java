@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.campusconnect.domain.Administrator;
-import za.ac.cput.campusconnect.domain.Room;
 import za.ac.cput.campusconnect.service.AdministratorService;
 
 import java.util.List;

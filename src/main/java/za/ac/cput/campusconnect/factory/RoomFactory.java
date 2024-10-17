@@ -12,9 +12,9 @@ import za.ac.cput.campusconnect.util.Helper;
  */
 
 public class RoomFactory {
-    public static Room buildRoom(Long roomID, Property property, int roomNumber, boolean occupied){
-        if(Helper.isNullOrEmpty(roomID) || Helper.isNullOrEmpty(property) || Helper.isNullOrEmpty(roomNumber) || Helper.isNullOrEmpty(occupied))
+    public static Room buildRoom(Property property, int roomNumber, boolean occupied){
+        if(Helper.isNullOrEmpty(property) || Helper.isNullOrEmpty(roomNumber) || Helper.isNullOrEmpty(occupied))
             return null;
-        return new Room.Builder().setRoomID(roomID).setProperty(property).setRoomNumber(roomNumber).setOccupied(occupied).build();
+        return new Room.Builder().setProperty(property).setRoomNumber(roomNumber).setOccupied(occupied).build();
     }
 }

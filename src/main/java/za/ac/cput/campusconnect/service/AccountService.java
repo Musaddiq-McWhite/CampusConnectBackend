@@ -14,7 +14,6 @@ import za.ac.cput.campusconnect.repository.AccountRepository;
 
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class AccountService implements IService<Account, Long> {
