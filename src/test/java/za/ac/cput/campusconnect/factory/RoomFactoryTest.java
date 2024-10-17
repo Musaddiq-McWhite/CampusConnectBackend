@@ -15,8 +15,8 @@ class RoomFactoryTest {
     @Order(1)
     void testBuildTheatre(){
 
-        Property property = PropertyFactory.buildProperty(654321L, "Aphelele", "IvyProperty", "IvyProperties", 18, 18);
-        Room room = RoomFactory.buildRoom(123L,property,69,true);
+        Property property = PropertyFactory.buildProperty( BusinessFactory.buildBusiness("Test Business","This is a business made for testing","123456780","business@gmail.com","1, Test Drive, Test Area","","Test Town","1234"), "IvyProperty", "IvyProperties", 18, 18);
+        Room room = RoomFactory.buildRoom(property,69,true);
         assertNotNull(room);
         System.out.println(room);
     }

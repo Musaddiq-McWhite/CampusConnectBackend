@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
+import za.ac.cput.campusconnect.domain.Business;
 import za.ac.cput.campusconnect.domain.Property;
+import za.ac.cput.campusconnect.factory.BusinessFactory;
 import za.ac.cput.campusconnect.factory.PropertyFactory;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -18,11 +20,13 @@ public class PropertyControllerTest {
     private TestRestTemplate restTemplate;
     private final String BASE_URL= "/property";
     private static Property property;
+    private static Business business;
 
 
     @BeforeAll
     public static void setup() {
-        property = PropertyFactory.buildProperty(181L, "Joka", "JayProperty", "36 Cape Cape", 20, 20);
+        business = BusinessFactory.buildBusiness("IvyProperties", "student accomodation", "0218130260", "ivyproperties@gmail.com", "13 Ntlazane Street", "Khayelitsha","Cape Town","7784");
+        property = PropertyFactory.buildProperty(business, "JayProperty", "36 Cape Cape", 20, 20);
 
     }
     @Test

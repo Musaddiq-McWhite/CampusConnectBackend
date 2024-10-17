@@ -3,7 +3,6 @@ package za.ac.cput.campusconnect.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.campusconnect.domain.Property;
-import za.ac.cput.campusconnect.domain.Student;
 import za.ac.cput.campusconnect.repository.PropertyRepository;
 
 import java.util.List;

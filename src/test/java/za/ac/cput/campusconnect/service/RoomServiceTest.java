@@ -30,18 +30,16 @@ class RoomServiceTest {
     private static Room room1,room2;
     private static Property property;
     private static Business business;
-    private static Contact contact;
 
     @Test
     @Order(1)
     void setUp() {
-        contact = ContactFactory.buildContact("1234567890", "john@example.com", "123 Main St", "", "Springfield", "12345");
-        business = BusinessFactory.buildBusiness(30260L, "IvyProperties", "student accomodation", "0218130260", "apelelejoka@gmail.com", "13 Ntlazane Street", "Khayelitsha","Cape Town","7784");
-        property = PropertyFactory.buildProperty(2181L, "Aphelele", "IvyProperty", "IvyProperties", 18, 18);
-        room1 = RoomFactory.buildRoom(123L,property,1,false);
+        business = BusinessFactory.buildBusiness( "IvyProperties", "student accomodation", "0218130260", "apelelejoka@gmail.com", "13 Ntlazane Street", "Khayelitsha","Cape Town","7784");
+        property = PropertyFactory.buildProperty( business, "IvyProperty", "IvyProperties", 18, 18);
+        room1 = RoomFactory.buildRoom(property,1,false);
         assertNotNull(room1);
         System.out.println(room1);
-        room2 = RoomFactory.buildRoom(321L,property,2,false);
+        room2 = RoomFactory.buildRoom(property,2,false);
         assertNotNull(room2);
         System.out.println(room2);
     }
@@ -49,6 +47,9 @@ class RoomServiceTest {
     @Test
     @Order(2)
     void save() {
+        Business created = businessService.create(business);
+        assertNotNull(created);
+        System.out.println(created);
         Property created1 = propertyService.create(property);
         assertNotNull(created1);
         System.out.println(created1);
