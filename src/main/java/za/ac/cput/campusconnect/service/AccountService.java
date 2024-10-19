@@ -32,7 +32,7 @@ public class AccountService implements IService<Account, Long> {
     @Override
     public Account update(Account account) {return repository.save(account);}
 
-    public void delete(Long accountNumber) {repository.deleteAccountByAccountNumber(accountNumber);}
+    public void delete(Long accountNumber) {repository.deleteById(accountNumber);}
 
     public Set<Account> getAll(String userType) {return repository.findAllByUserType(userType);}
 
