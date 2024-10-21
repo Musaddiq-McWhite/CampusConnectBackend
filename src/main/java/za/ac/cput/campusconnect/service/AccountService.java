@@ -13,7 +13,6 @@ import za.ac.cput.campusconnect.domain.Account;
 import za.ac.cput.campusconnect.repository.AccountRepository;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class AccountService implements IService<Account, Long> {
@@ -33,8 +32,6 @@ public class AccountService implements IService<Account, Long> {
     public Account update(Account account) {return repository.save(account);}
 
     public void delete(Long accountNumber) {repository.deleteById(accountNumber);}
-
-    public Set<Account> getAll(String userType) {return repository.findAllByUserType(userType);}
 
     public List<Account> getAll() {return repository.findAll();}
 
