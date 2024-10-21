@@ -7,6 +7,8 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import za.ac.cput.campusconnect.domain.*;
+import za.ac.cput.campusconnect.factory.BusinessFactory;
+import za.ac.cput.campusconnect.factory.PropertyFactory;
 import za.ac.cput.campusconnect.factory.RoomFactory;
 import za.ac.cput.campusconnect.factory.StudentFactory;
 
@@ -20,11 +22,12 @@ public class RoomControllerTest {
     @Autowired
     private TestRestTemplate restTemplate;
     private final String BASE_URL = "/room";
-    private Room room;
+    private static Room room;
+    private static Property property;
 
     @BeforeEach
     void setUp() {
-        room = RoomFactory.buildRoom(123456L, new Property.Builder().setPropertyID(7864168L).setPropertyOwner("Aphelele").setPropertyName("IvyProperty").setPropertyAddress("IvyProperties").setMaleRoom(18).setFemaleRoom(18).build(), 69, true);
+        room = RoomFactory.buildRoom(PropertyFactory.buildProperty(BusinessFactory.buildBusiness("IvyProperties", "student accomodation", "0218130260", "ivyproperties@gmail.com", "13 Ntlazane Street", "Khayelitsha", "Cape Town", "7784"),"JayProperty", "36 Cape Cape", 20, 20), 69, true);
     }
 
     @Test

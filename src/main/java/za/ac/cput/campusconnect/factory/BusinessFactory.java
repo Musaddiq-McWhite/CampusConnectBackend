@@ -11,10 +11,10 @@ import za.ac.cput.campusconnect.util.Helper;
  */
 
 public class BusinessFactory {
-    public static Business buildBusiness(Long businessID, String businessName, String description,
+    public static Business buildBusiness(String businessName, String description,
                                          String phoneNumber, String email, String addressLine1, String addressLine2,
                                          String city, String postalCode) {
-        if (Helper.isNullOrEmpty(businessID) || Helper.isNullOrEmpty(businessName) ||
+        if (Helper.isNullOrEmpty(businessName) ||
                 Helper.isNullOrEmpty(description) ||Helper.isNullOrEmpty(phoneNumber)||Helper.isNullOrEmpty(email)||
                 Helper.isNullOrEmpty(addressLine1) || Helper.isNullOrEmpty(addressLine2)|| Helper.isNullOrEmpty(city)||Helper.isNullOrEmpty(postalCode)) {
             return null;
@@ -22,7 +22,7 @@ public class BusinessFactory {
         Contact contact = ContactFactory.buildContact(phoneNumber,email,addressLine1, addressLine2,  city, postalCode);
         if (contact == null) {
             return null;
-        }return new Business.Builder().setBusinessID(businessID)
+        }return new Business.Builder()
                 .setBusinessName(businessName)
                 .setContact(contact)
                 .setDescription(description)

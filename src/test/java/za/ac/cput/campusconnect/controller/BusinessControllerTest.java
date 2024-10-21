@@ -22,7 +22,7 @@ public class BusinessControllerTest {
 
         @BeforeAll
         public static void setup() {
-            business = BusinessFactory.buildBusiness(30260L, "IvyProperties", "student accomodation", "0218130260", "ivyproperties@gmail.com", "13 Ntlazane Street", "Khayelitsha","Cape Town","7784");
+            business = BusinessFactory.buildBusiness("IvyProperties", "student accomodation", "0218130260", "ivyproperties@gmail.com", "13 Ntlazane Street", "Khayelitsha","Cape Town","7784");
 
         }
         @Test

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.campusconnect.domain.Property;
+import za.ac.cput.campusconnect.factory.BusinessFactory;
 import za.ac.cput.campusconnect.factory.PropertyFactory;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -20,11 +21,11 @@ public class PropertyServiceTest {
 
     @Test
      void a_setup(){
-        property1 = PropertyFactory.buildProperty(2181L, "Aphelele", "IvyProperty", "IvyProperties", 18, 18);
+        property1 = PropertyFactory.buildProperty(BusinessFactory.buildBusiness("Test Business","This is a business made for testing","123456780","business@gmail.com","1, Test Drive, Test Area","","Test Town","1234"), "IvyProperty", "IvyProperties", 18, 18);
         assertNotNull(property1);
         System.out.println(property1);
 
-        property2 = PropertyFactory.buildProperty(181L, "Joka", "JayProperty", "36 Cape Cape", 20, 20);
+        property2 = PropertyFactory.buildProperty(BusinessFactory.buildBusiness("Test Business","This is a business made for testing","123456780","business@gmail.com","1, Test Drive, Test Area","","Test Town","1234"), "JayProperty", "36 Cape Cape", 20, 20);
         assertNotNull(property2);
         System.out.println(property2);
     }
@@ -47,7 +48,7 @@ public class PropertyServiceTest {
     }
     @Test
     void d_update(){
-        Property newProperty = new Property.Builder().copy(property2).setPropertyOwner("Aphelele Zimmy").build();
+        Property newProperty = new Property.Builder().copy(property2).setPropertyName("A new name").build();
         Property updated= propertyService.update(newProperty);
         assertNotNull(updated);
         System.out.println(updated);

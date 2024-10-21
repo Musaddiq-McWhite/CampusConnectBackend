@@ -14,50 +14,57 @@ import za.ac.cput.campusconnect.factory.AccountFactory;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class AccountServiceTest {
 
-        @Autowired
-        private AccountService accountService;
-        private static Account account1, account2;
+    @Autowired
+    private AccountService accountService;
+    private static Account account1, account2;
 
-        @Test
-        @Order(1)
-        void setup() {
-            account1 = AccountFactory.buildAccount(219369151L,"Musaddiq","Musaddiq1234","Admin");
-            assertNotNull(account1);
-            System.out.println(account1);
-            account2 = AccountFactory.buildAccount(17167136L,"McWhite","McWhite1234","Admin");
-            assertNotNull(account2);
-            System.out.println(account2);
-        }
+    @Test
+    @Order(1)
+    void setup() {
+        account1 = AccountFactory.buildAccount(219369151L,"Musaddiq","Musaddiq1234","Admin");
+        assertNotNull(account1);
+        System.out.println(account1);
+        account2 = AccountFactory.buildAccount(17167136L,"McWhite","McWhite1234","Admin");
+        assertNotNull(account2);
+        System.out.println(account2);
+    }
 
-        @Test
-        @Order(2)
-        void create() {
-            Account created1 = accountService.create(account1);
-            assertNotNull(created1);
-            System.out.println("Account created " + created1);
-            Account created2 = accountService.create(account2);
-            assertNotNull(created2);
-            System.out.println("Account created " + created2);
-        }
+    @Test
+    @Order(2)
+    void create() {
+        Account created1 = accountService.create(account1);
+        assertNotNull(created1);
+        System.out.println("Account created " + created1);
+        Account created2 = accountService.create(account2);
+        assertNotNull(created2);
+        System.out.println("Account created " + created2);
+    }
 
-        @Test
-        @Order(3)
-        void read() {
-            Account read = accountService.read(account1.getAccountNumber());
-            assertNotNull(read);
-            System.out.println(read);
-        }
+    @Test
+    @Order(3)
+    void read() {
+        Account read = accountService.read(account1.getAccountNumber());
+        assertNotNull(read);
+        System.out.println(read);
+    }
 
-        @Test
-        @Order(4)
-        void update() {
-            Account newAccount = new Account.Builder().copy(account2).setAccountNumber(171671362L).build();
-            Account updated = accountService.update(newAccount);
-            assertNotNull(updated);
-            System.out.println(updated);
-        }
+    @Test
+    @Order(4)
+    void update() {
+        Account newAccount = new Account.Builder().copy(account2).setAccountNumber(171671362L).build();
+        Account updated = accountService.update(newAccount);
+        assertNotNull(updated);
+        System.out.println(updated);
+    }
 
-        @Test
-        @Order(5)
-        void getAll() {System.out.println(accountService.getAll());}
+    @Test
+    @Order(6)
+    void deleteByID() {
+        accountService.delete(account2.getAccountNumber());
+        System.out.println("Account 2 deleted successfully");
+    }
+
+    @Test
+    @Order(5)
+    void getAll() {System.out.println(accountService.getAll());}
 }

@@ -16,7 +16,6 @@ import za.ac.cput.campusconnect.domain.Account;
 import za.ac.cput.campusconnect.service.AccountService;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("account")
@@ -34,12 +33,12 @@ public class AccountController {
     }
 
     @GetMapping("/read/{accountNumber}")
-    public ResponseEntity<?> read(@PathVariable("accountNumber") Long accountNumber) {
+    public ResponseEntity<?> read(@PathVariable Long accountNumber) {
         Account account = accountService.read(accountNumber);
         if (account == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return ResponseEntity.badRequest().body("Account with Account Number: " + accountNumber + " does not exist");
         }
-        return new ResponseEntity<>(account, HttpStatus.OK);
+        return ResponseEntity.ok(account);
     }
 
     @GetMapping("getAll")
@@ -47,12 +46,11 @@ public class AccountController {
 
     @PostMapping("/update")
     public ResponseEntity<?> update(@RequestBody Account account) {
-        Account updatedAccount = accountService.update(account);
+        Account updatedAccount = accountService.create(account);
         if (updatedAccount == null) {
             return ResponseEntity.badRequest().body("Error updating account. Please try again later");
         }
         return ResponseEntity.ok(updatedAccount);
-//        return new ResponseEntity<>(updatedAccount, HttpStatus.OK);
     }
 
 }

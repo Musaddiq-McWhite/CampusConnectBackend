@@ -15,7 +15,9 @@ public class Property {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long propertyID;
-    private String propertyOwner;
+    @ManyToOne
+    @JoinColumn(name = "businessID")
+    private Business business;
     private String propertyName;
     private String propertyAddress;
     private int maleRoom;
@@ -26,7 +28,7 @@ public class Property {
     }
     private Property(Builder builder){
         this.propertyID = builder.propertyID;
-        this.propertyOwner = builder.propertyOwner;
+        this.business = builder.business;
         this.propertyName = builder.propertyName;
         this.propertyAddress = builder.propertyAddress;
         this.maleRoom = builder.maleRoom;
@@ -38,8 +40,8 @@ public class Property {
         return propertyID;
     }
 
-    public String getPropertyOwner() {
-        return propertyOwner;
+    public Business getBusiness() {
+        return business;
     }
 
     public String getPropertyName() {
@@ -63,28 +65,29 @@ public class Property {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Property property = (Property) o;
-        return maleRoom == property.maleRoom && femaleRoom == property.femaleRoom && Objects.equals(propertyID, property.propertyID) && Objects.equals(propertyOwner, property.propertyOwner) && Objects.equals(propertyName, property.propertyName) && Objects.equals(propertyAddress, property.propertyAddress);
+        return maleRoom == property.maleRoom && femaleRoom == property.femaleRoom && Objects.equals(propertyID, property.propertyID) && Objects.equals(business, property.business) && Objects.equals(propertyName, property.propertyName) && Objects.equals(propertyAddress, property.propertyAddress);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(propertyID, propertyOwner, propertyName, propertyAddress, maleRoom, femaleRoom);
+        return Objects.hash(propertyID, business, propertyName, propertyAddress, maleRoom, femaleRoom);
     }
 
     @Override
     public String toString() {
         return "Property{" +
-                "propertyID='" + propertyID + '\'' +
-                ", propertyOwner='" + propertyOwner + '\'' +
+                "propertyID=" + propertyID +
+                ", business=" + business +
                 ", propertyName='" + propertyName + '\'' +
                 ", propertyAddress='" + propertyAddress + '\'' +
                 ", maleRoom=" + maleRoom +
                 ", femaleRoom=" + femaleRoom +
                 '}';
     }
+
     public static class Builder{
         private Long propertyID;
-        private String propertyOwner;
+        private Business business;
         private String propertyName;
         private String propertyAddress;
         private int maleRoom;
@@ -95,8 +98,8 @@ public class Property {
             return this;
         }
 
-        public Builder setPropertyOwner(String propertyOwner) {
-            this.propertyOwner = propertyOwner;
+        public Builder setBusiness(Business business) {
+            this.business = business;
             return this;
         }
 
@@ -121,7 +124,7 @@ public class Property {
         }
         public Builder copy(Property property){
             this.propertyID = property.propertyID;
-            this.propertyOwner = property.propertyOwner;
+            this.business = property.business;
             this.propertyName = property.propertyName;
             this.propertyAddress = property.propertyAddress;
             this.maleRoom = property.maleRoom;
