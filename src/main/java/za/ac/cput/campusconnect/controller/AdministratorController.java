@@ -47,3 +47,4 @@ public class AdministratorController {
         return ResponseEntity.ok(updatedAdministrator);
     }
 }
+//
