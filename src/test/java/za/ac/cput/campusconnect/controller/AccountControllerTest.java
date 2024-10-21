@@ -1,32 +1,16 @@
 package za.ac.cput.campusconnect.controller;
 
 import org.junit.jupiter.api.*;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import za.ac.cput.campusconnect.domain.Account;
-
 import za.ac.cput.campusconnect.factory.AccountFactory;
-
-
 import java.util.Arrays;
-
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -78,8 +62,20 @@ public class AccountControllerTest {
         System.out.println("Updated Account: " + response.getBody());
     }
 
+    @Disabled
     @Test
     @Order(4)
+    void delete() {
+        String URL = BASE_URL + "/delete/" + account.getAccountNumber();
+        System.out.println("URL: " + URL);
+        restTemplate.delete(URL);
+        ResponseEntity<Account> response = restTemplate.getForEntity(BASE_URL + "/read/" + account.getAccountNumber(), Account.class);
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        System.out.println("Success: Deleted account");
+    }
+
+    @Test
+    @Order(5)
     void getAll() {
         String url = BASE_URL + "/getAll";
         ResponseEntity<Account[]> response = restTemplate.getForEntity(url, Account[].class);
@@ -87,113 +83,4 @@ public class AccountControllerTest {
         assertTrue(response.getBody().length > 0);
         System.out.println("All Accounts: " + Arrays.toString(response.getBody()));
     }
-/*
-    private MockMvc mockMvc;
-
-    @Mock
-    private AccountService accountService;
-
-    @InjectMocks
-    private AccountController accountController;
-
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.openMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(accountController)
-                .setControllerAdvice(new ResponseEntityExceptionHandler())
-                .build();
-    }
-
-    @Test
-    public void testCreateAccountSuccess() throws Exception {
-        Account account = new Account();
-        account.setAccountNumber("123456");
-        when(accountService.create(any(Account.class))).thenReturn(account);
-
-        mockMvc.perform(post("/Account/create")
-                        .contentType("application/json")
-                        .content("{\"accountNumber\": \"123456\"}"))
-                .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.accountNumber").value("123456"));
-
-        verify(accountService, times(1)).create(any(Account.class));
-    }
-
-    @Test
-    public void testCreateAccountFailure() throws Exception {
-        when(accountService.create(any(Account.class))).thenReturn(null);
-
-        mockMvc.perform(post("/Account/create")
-                        .contentType("application/json")
-                        .content("{\"accountNumber\": \"123456\"}"))
-                .andExpect(status().isBadRequest());
-
-        verify(accountService, times(1)).create(any(Account.class));
-    }
-
-    @Test
-    public void testReadAccountSuccess() throws Exception {
-        Account account = new Account();
-        account.setAccountNumber("123456");
-        when(accountService.read(anyString())).thenReturn(account);
-
-        mockMvc.perform(get("/Account/read/123456"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.accountNumber").value("123456"));
-
-        verify(accountService, times(1)).read(anyString());
-    }
-
-    @Test
-    public void testReadAccountNotFound() throws Exception {
-        when(accountService.read(anyString())).thenReturn(null);
-
-        mockMvc.perform(get("/Account/read/123456"))
-                .andExpect(status().isNotFound());
-
-        verify(accountService, times(1)).read(anyString());
-    }
-
-    @Test
-    public void testGetAllAccounts() throws Exception {
-        Set<Account> accounts = new HashSet<>();
-        Account account = new Account();
-        account.setAccountNumber("123456");
-        accounts.add(account);
-        when(accountService.findAll()).thenReturn(accounts);
-
-        mockMvc.perform(get("/Account/getAll"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].accountNumber").value("123456"));
-
-        verify(accountService, times(1)).findAll();
-    }
-
-    @Test
-    public void testUpdateAccountSuccess() throws Exception {
-        Account account = new Account();
-        account.setAccountNumber("123456");
-        when(accountService.update(any(Account.class))).thenReturn(account);
-
-        mockMvc.perform(post("/Account/update")
-                        .contentType("application/json")
-                        .content("{\"accountNumber\": \"123456\"}"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.accountNumber").value("123456"));
-
-        verify(accountService, times(1)).update(any(Account.class));
-    }
-
-    @Test
-    public void testUpdateAccountFailure() throws Exception {
-        when(accountService.update(any(Account.class))).thenReturn(null);
-
-        mockMvc.perform(post("/Account/update")
-                        .contentType("application/json")
-                        .content("{\"accountNumber\": \"123456\"}"))
-                .andExpect(status().isBadRequest())
-                .andExpect(content().string("Error updating account. Please try again later"));
-
-        verify(accountService, times(1)).update(any(Account.class));
-    } */
 }

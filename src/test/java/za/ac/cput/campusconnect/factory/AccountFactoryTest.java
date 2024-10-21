@@ -24,7 +24,6 @@ class AccountFactoryTest {
     }
 
     @Test
-    @Disabled
     @Order(2)
     void testFail(){
         Account account = AccountFactory.buildAccount(123456L, "RealMusaddiq", "Musaddiq123", "Student");
